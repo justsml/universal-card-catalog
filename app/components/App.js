@@ -69,7 +69,8 @@ class App extends Component {
 
 App.propTypes = {
   selectedGame: PropTypes.object,
-  myGames: PropTypes.object,
+  games: PropTypes.object,
+  auth: PropTypes.object,
   isFetching: PropTypes.bool,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired

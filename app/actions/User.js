@@ -1,6 +1,17 @@
 // import fetch from 'isomorphic-fetch'
 import { fetcher } from '../utils';
 import { pushState } from 'redux-router';
+const LOGOUT_USER = 'LOGOUT_USER'
+const LOGIN = {
+  REQUEST: 'USER_LOGIN_REQUEST',
+  FAILURE: 'USER_LOGIN_FAILURE',
+  SUCCESS: 'USER_LOGIN_SUCCESS',
+}
+const REGISTER = {
+  REQUEST: 'USER_REGISTER_REQUEST',
+  FAILURE: 'USER_REGISTER_FAILURE',
+  SUCCESS: 'USER_REGISTER_SUCCESS',
+}
 
 export default {
   LABELS: {
@@ -16,17 +27,6 @@ export default {
   loginUser
 }
 
-const LOGOUT_USER = 'LOGOUT_USER'
-const LOGIN = {
-  REQUEST: 'USER_LOGIN_REQUEST',
-  FAILURE: 'USER_LOGIN_FAILURE',
-  SUCCESS: 'USER_LOGIN_SUCCESS',
-}
-const REGISTER = {
-  REQUEST: 'USER_REGISTER_REQUEST',
-  FAILURE: 'USER_REGISTER_FAILURE',
-  SUCCESS: 'USER_REGISTER_SUCCESS',
-}
 // const USER_LOGIN_REQUEST   = 'USER_LOGIN_REQUEST'
 // const USER_LOGIN_FAILURE   = 'USER_LOGIN_FAILURE'
 // const USER_LOGIN_SUCCESS   = 'USER_LOGIN_SUCCESS'
@@ -53,7 +53,7 @@ function loginUserFailure(error) {
 }
 
 function loginUserRequest() {
-  return { 'type': LOGIN.REQUEST, is }
+  return { 'type': LOGIN.REQUEST, 'isFetching': true }
 }
 
 function logout() {
@@ -66,7 +66,7 @@ function logout() {
 }
 
 function logoutAndRedirect() {
-  return (dispatch, state) => {
+  return (dispatch) => {
     dispatch(logout());
     dispatch(pushState(null, '/login'));
   }
@@ -80,16 +80,13 @@ function loginUser(email, password, redirect = '/') {
       'body': JSON.stringify({email, password})
     })
     .then(response => {
+      console.warn('Login', response)
       try {
-        console.warn('Login', response)
-        dispatch(loginUserSuccess(response.token));
+        dispatch(loginUserSuccess(response));
         dispatch(pushState(null, redirect));
       } catch (e) {
         dispatch(loginUserFailure({
-          response: {
-            status: 403,
-            statusText: 'Invalid token'
-          }
+          'error': {'status': 403, 'statusText': 'Invalid token'}
         }));
       }
     })

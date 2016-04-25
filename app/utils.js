@@ -1,4 +1,21 @@
-import fetch from 'isomorphic-fetch'
+import fetch          from 'isomorphic-fetch'
+import Colors         from 'material-ui/styles/colors';
+
+/**
+ * @description global named styles for site & UI components
+ */
+export const AppStyle = {
+  'root': {
+    margin: 12,
+  },
+  'errorStyle': {
+    color: Colors.red500,
+  },
+  'underlineStyle': {
+    borderColor: Colors.blue700,
+  },
+};
+
 
 export function fetcher(url, opts) {
   let token     = localStorage.getItem('token')
@@ -30,7 +47,7 @@ export function checkHttpStatus(response) {
     throw error
   }
 }
-
 export function parseJSON(response) {
   return response.json()
 }
+

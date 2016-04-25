@@ -9,7 +9,7 @@ const { LOGIN, REGISTER, LOGOUT_USER } = UserActions.LABELS
 
 const rootReducer = combineReducers({
   games: gameReducer,
-  user: userReducer
+  auth: userReducer
 })
 
 export default rootReducer
