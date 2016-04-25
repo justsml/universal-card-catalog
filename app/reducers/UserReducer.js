@@ -1,4 +1,9 @@
-export default userReducer
+import { UserActions } from '../actions'
+const { LOGIN, REGISTER, LOGOUT_USER } = UserActions.LABELS
+
+export default {
+  userReducer
+}
 
 const userReducer = (state = {}, { type, payload }) => {
   if (type === USER_LOGGED_IN) {

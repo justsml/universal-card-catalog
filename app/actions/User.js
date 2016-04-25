@@ -3,10 +3,11 @@ import { fetcher } from '../utils';
 import { pushState } from 'redux-router';
 
 export default {
-  LOGOUT_USER,
-  LOGIN,
-  REGISTER,
-
+  LABELS: {
+    LOGOUT_USER,
+    LOGIN,
+    REGISTER,
+  },
   loginUserSuccess,
   loginUserFailure,
   loginUserRequest,

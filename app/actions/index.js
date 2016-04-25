@@ -1,9 +1,13 @@
 import fetch from 'isomorphic-fetch'
 import UserActions from './User'
 import GameActions from './Game'
-const { SELECT_GAME, INVALID_GAMES, REQUEST_GAMES, RECEIVE_GAMES } = GameActions
-const { LOGIN, REGISTER } = UserActions
+const { RECEIVE_GAMES, REQUEST_GAMES, REQUEST_ERROR, INVALID_GAMES, SELECT_GAME } = GameActions.LABELS
+const { LOGIN, REGISTER, LOGOUT_USER } = UserActions.LABELS
 
+export default {
+  UserActions,
+  GameActions
+}
 
 
 // // Meet our first thunk action creator!
