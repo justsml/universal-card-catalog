@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {List, ListItem} from 'material-ui/List';
 import ActionInfo from 'material-ui/svg-icons/action/info';
 
@@ -6,10 +6,9 @@ export default class GameList extends Component {
   constructor(props) {
     super(props);
     // this.state = { counter: 0 };
-  }
-
-  contextTypes: {
-    muiTheme: PropTypes.object,
+    this.contextTypes = {
+      muiTheme: PropTypes.object,
+    }
   }
 
   getDefaultProps() {
@@ -19,9 +18,7 @@ export default class GameList extends Component {
   }
 
   render() {
-    const {
-      prepareStyles,
-    } = this.context.muiTheme;
+    // const {prepareStyles} = this.context.muiTheme;
 
     const styles = {
       root: {
@@ -31,7 +28,7 @@ export default class GameList extends Component {
 
     console.warn('Render.GameList', this.props)
     return (
-      <List>
+      <List ref='gameList' style={styles.root}>
         {this.props.games.map(game => {
           return (<ListItem
             key={game.id}
@@ -40,7 +37,7 @@ export default class GameList extends Component {
           />)}
         )}
       </List>
-   );
+    )
   }
 }
 

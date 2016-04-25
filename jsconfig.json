@@ -4,6 +4,8 @@
         "module": "es2015"
     },
     "exclude": [
-        ".public"
+        ".public",
+        "node_modules",
+        ".tmp"
     ]
 }
