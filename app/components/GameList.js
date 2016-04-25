@@ -24,9 +24,13 @@ export default class GameList extends Component {
   render() {
     // const {prepareStyles} = this.context.muiTheme;
     console.warn('Render.GameList', this.props)
+    let {games} = this.props;
+
     return (
       <List ref='gameList' style={styles.root}>
-        {this.props.games.map(game => {
+        {!games ?
+          <h3>No Games Found</h3>
+          : games.map(game => {
           return (<ListItem
             key={game.id}
             primaryText={game.name}
