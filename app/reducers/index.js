@@ -1,63 +1,59 @@
-import { createStore } from 'redux'
+import { combineReducers } from 'redux'
+import {
+  SELECT_GAME, INVALIDATE_GAMES,
+  REQUEST_GAMES, RECEIVE_GAMES
+} from '../actions'
 
-/**
- * This is a reducer, a pure function with (state, action) => state signature.
- * It describes how an action transforms the state into the next state.
- *
- * The shape of the state is up to you: it can be a primitive, an array, an object,
- * or even an Immutable.js data structure. The only important part is that you should
- * not mutate the state object, but return a new object if the state changes.
- *
- * In this example, we use a `switch` statement and strings, but you can use a helper that
- * follows a different convention (such as function maps) if it makes sense for your
- * project.
- */
-/*
- *
- * Example:
- * case YOUR_ACTION_CONSTANT:
- *   return assign({}, state, {
- *       stateVariable: action.var
- *   });
- */
-
-import { CHANGE_FORM, SET_AUTH, SENDING_REQUEST } from '../constants';
-// Object.assign is not yet fully supported in all browsers, so we fallback to
-// a polyfill
-const assign = Object.assign || require('object.assign');
-import auth from '../utils/auth';
-
-// The initial application state
-const initialLoginState = {
-  formState: {
-    username: '',
-    password: ''
-  },
-  currentlySending: false,
-  loggedIn: auth.loggedIn()
-};
-
-// Takes care of changing the application state
-export default { loginReducer }
-
-function loginReducer(state = initialLoginState, action) {
+function selectedGame(state = {}, action) {
   switch (action.type) {
-    case CHANGE_FORM:
-      return assign({}, state, {
-        formState: action.newState
-      });
-      break;
-    case SET_AUTH:
-      return assign({}, state, {
-        loggedIn: action.newState
-      });
-      break;
-    case SENDING_REQUEST:
-      return assign({}, state, {
-        currentlySending: action.sending
-      });
-      break;
+    case SELECT_GAME:
+      return action.game
     default:
-      return state;
+      return state
   }
 }
+
+function setGames(state = {
+  isFetching: false,
+  didInvalidate: false,
+  items: []
+}, action) {
+  switch (action.type) {
+    case INVALIDATE_GAMES:
+      return Object.assign({}, state, {
+        didInvalidate: true
+      })
+    case REQUEST_GAMES:
+      return Object.assign({}, state, {
+        isFetching: true,
+        didInvalidate: false
+      })
+    case RECEIVE_GAMES:
+      return Object.assign({}, state, {
+        isFetching: false,
+        didInvalidate: false,
+        games: action.games,
+        lastUpdated: action.receivedAt
+      })
+    default:
+      return state
+  }
+}
+
+function gamesByUser(state = { }, action) {
+  switch (action.type) {
+    case INVALIDATE_GAMES:
+    case RECEIVE_GAMES:
+    case REQUEST_GAMES:
+      return Object.assign({}, state, setGames(state, action))
+    default:
+      return state
+  }
+}
+
+const rootReducer = combineReducers({
+  gamesByUser,
+  selectedGame
+})
+
+export default rootReducer

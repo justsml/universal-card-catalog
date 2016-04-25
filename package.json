@@ -6,9 +6,6 @@
       "es2015",
       "stage-0",
       "react"
-    ],
-    "plugins": [
-      "react-hot-loader/babel"
     ]
   },
   "private": true,
@@ -69,9 +66,12 @@
     "react-dom": "^15.0.1",
     "react-hot-loader": "^3.0.0-alpha.9",
     "react-redux": "^4.4.5",
+    "react-router-redux": "^4.0.2",
     "react-toolbox": "^0.16.2",
     "redux": "^3.5.2",
     "redux-devtools": "^3.2.0",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.0.1",
     "sails": "~0.12.3",
     "sails-disk": "~0.10.9",
     "supertest": "^1.2.0",
@@ -85,7 +85,7 @@
   },
   "scripts": {
     "debug": "DEBUG=* nodemon app.js",
-    "build": "gulp build",
+    "build": "gulp build && webpack --config webpack.config.js",
     "build-dev": "node build-server.js",
     "watch": "gulp watch",
     "test": "mocha test",

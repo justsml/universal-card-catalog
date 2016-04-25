@@ -1,8 +1,11 @@
 extends ./default.jade
 
-block head
-  script(src='/js/bundle.js')
+block vendor
+  // no vendor script
 
 block body
   h1 React App
   div#root
+
+block foot
+  script(src='/js/bundle.js')
