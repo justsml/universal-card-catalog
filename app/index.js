@@ -1,19 +1,15 @@
-import { AppContainer } from 'react-hot-loader';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
+import 'babel-polyfill'
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import App from './containers/App'
+import configureStore from './configure-store'
 
-const rootEl = document.getElementById('root');
-ReactDOM.render(
-  <AppContainer component={App} />,
-  rootEl
-);
+const store = configureStore()
 
-if (module.hot) {
-  module.hot.accept('./App', () => {
-    ReactDOM.render(
-      <AppContainer component={require('./App').default} />,
-      rootEl
-    );
-  });
-}
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)

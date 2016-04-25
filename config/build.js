@@ -7,7 +7,7 @@ export default {
   build: {
     assetsSrc: [path.resolve(__dirname, '../assets/**')],
     es6Src:    [path.resolve(__dirname, '../src/index.js')],
-    jadeSrc:   [path.resolve(__dirname, '../views/index.jade')],
+    jadeSrc:   [path.resolve(__dirname, '../views/index.jade'), path.resolve(__dirname, '../views/react.jade')],
     lessSrc:   [path.resolve(__dirname, '../src/styles/site.less')],
     vendorSrc: [
       path.resolve(__dirname, '../node_modules/jquery/dist/jquery.min.js'),

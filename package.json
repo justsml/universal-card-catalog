@@ -7,7 +7,9 @@
       "stage-0",
       "react"
     ],
-    "plugins": ["react-hot-loader/babel"]
+    "plugins": [
+      "react-hot-loader/babel"
+    ]
   },
   "private": true,
   "version": "0.0.1",
@@ -60,21 +62,26 @@
     "jadeify": "^4.6.0",
     "less": "^2.6.0",
     "lodash": "^4.1.0",
+    "material-ui": "^0.15.0-beta.2",
     "nodemon": "^1.8.1",
+    "rc": "1.0.1",
     "react": "^15.0.1",
     "react-dom": "^15.0.1",
     "react-hot-loader": "^3.0.0-alpha.9",
-    "rc": "1.0.1",
+    "react-redux": "^4.4.5",
+    "react-toolbox": "^0.16.2",
+    "redux": "^3.5.2",
+    "redux-devtools": "^3.2.0",
     "sails": "~0.12.3",
     "sails-disk": "~0.10.9",
     "supertest": "^1.2.0",
     "tape": "^4.5.1",
     "vinyl-source-stream": "^1.1.0",
-    "webpack": "^1.12.2",
-    "webpack-dev-server": "^1.12.1",
     "watchify": "^3.7.0",
     "waterlock": "^0.1.2-rc1",
-    "waterlock-local-auth": "^0.1.2-rc1"
+    "waterlock-local-auth": "^0.1.2-rc1",
+    "webpack": "^1.12.2",
+    "webpack-dev-server": "^1.12.1"
   },
   "scripts": {
     "debug": "DEBUG=* nodemon app.js",
