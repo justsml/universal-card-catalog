@@ -1,16 +1,31 @@
 {
+  "parser": "babel-eslint",
+
   "parserOptions": {
+    "sourceType": "module",
+    "modules": true,
     "ecmaVersion": 6,
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "experimentalObjectRestSpread": true
     }
+  },
+
+  "env": {
+    "browser": true,
+    "node": true,
+    "es6": true
   },
 
   "plugins": [ "react" ],
 
-  "extends": [ "standard-jsx" ],
+  "extends": ["eslint:recommended"],
 
   "rules": {
+    "strict": 0,
+    "quotes": [1, "single"],
+    "comma-dangle": 0,
+    "no-console": 0,
     "no-undef": [1],
     "max-statements": [1, 16],
     "complexity": [1, 12],
