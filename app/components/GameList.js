@@ -7,19 +7,28 @@ export default class GameList extends Component {
     super(props);
     // this.state = { counter: 0 };
   }
-  componentDidMount() {
-    // this.interval = setInterval(this.tick.bind(this), 1000);
+
+  contextTypes: {
+    muiTheme: PropTypes.object,
   }
-  // tick() {
-  //   this.setState({
-  //     counter: this.state.counter + 1
-  //   });
-  // }
-  componentWillUnmount() {
-    // clearInterval(this.interval);
+
+  getDefaultProps() {
+    return {
+      minWidth: 320,
+    };
   }
 
   render() {
+    const {
+      prepareStyles,
+    } = this.context.muiTheme;
+
+    const styles = {
+      root: {
+        margin: 12,
+      },
+    };
+
     console.warn('Render.GameList', this.props)
     return (
       <List>

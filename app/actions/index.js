@@ -1,69 +1,10 @@
 import fetch from 'isomorphic-fetch'
-
-export const REQUEST_GAMES     = 'REQUEST_GAMES'
-export const RECEIVE_GAMES     = 'RECEIVE_GAMES'
-export const REQUEST_ERROR     = 'REQUEST_ERROR'
-export const INVALID_GAMES     = 'INVALID_GAMES'
-export const SELECT_GAME       = 'SELECT_GAME'
-
-export function selectGame(game) {
-  return { 'type': SELECT_GAME, game }
-}
-
-export function invalidateGames(game) {
-  return { 'type': INVALID_GAMES, game }
-}
-
-function requestGames() {
-  return {'type': REQUEST_GAMES}
-}
-
-function receiveGames(json) {
-  console.warn('receiveGames', json)
-  return {
-    'type': RECEIVE_GAMES,
-    'games': json,
-    'lastUpdated': Date.now()
-  }
-}
-
-function requestError(errPath, err) {
-  return {'type': REQUEST_ERROR, errPath, err}
-}
+import UserActions from './User'
+import GameActions from './Game'
+const { SELECT_GAME, INVALID_GAMES, REQUEST_GAMES, RECEIVE_GAMES } = GameActions
+const { LOGIN, REGISTER } = UserActions
 
 
-function fetchGames() {
-  // let q =  + (query ? '?where='+encodeURIComponent(JSON.stringify(query)) : '')
-  return dispatch => {
-    dispatch(requestGames())
-    return fetch(`/game/`, {method: 'GET' })
-      .then(response => response.json())
-      .then(json => dispatch(receiveGames(json)))
-      .catch(err => {
-        console.error('Failed HTTP:', err);
-      })
-  }
-}
-
-function shouldFetchGames(state) {
-  console.warn('shouldFetchGames', state)
-  const games = state.gamesByUser
-  if (state.isFetching) {
-    return false
-  }
-  if (!games || games.length < 1) {
-    return true
-  }
-  return state.didInvalidate
-}
-
-export function fetchGamesIfNeeded() {
-  return (dispatch, getState) => {
-    if (shouldFetchGames(getState())) {
-      return dispatch(fetchGames())
-    }
-  }
-}
 
 // // Meet our first thunk action creator!
 // // Though its insides are different, you would use it just like any other action creator:

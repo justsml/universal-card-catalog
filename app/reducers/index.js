@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import {
-  SELECT_GAME, INVALID_GAMES,
-  REQUEST_GAMES, RECEIVE_GAMES
-} from '../actions'
+import userReducer         from './UserReducer'
+import { GameActions, UserActions } from '../actions'
+const { SELECT_GAME, INVALID_GAMES, REQUEST_GAMES, RECEIVE_GAMES } = GameActions
+const { LOGIN, REGISTER } = UserActions
 
 function selectedGame(state = {}, action) {
   console.warn('selectedGame', state, action)
@@ -56,7 +56,8 @@ function gamesByUser(state = { }, action) {
 
 const rootReducer = combineReducers({
   myGames: gamesByUser,
-  selectedGame: selectedGame
+  selectedGame: selectedGame,
+  user: userReducer
 })
 
 export default rootReducer
