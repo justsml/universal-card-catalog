@@ -19,7 +19,7 @@ class App extends Component {
   componentWillReceiveProps(nextProps) {
     // if (nextProps.selectedGame !== this.props.selectedGame) {
     //   const { dispatch, selectedGame } = nextProps
-    dispatch(fetchGamesIfNeeded())
+    // dispatch(fetchGamesIfNeeded())
     // }
   }
 
@@ -69,14 +69,14 @@ class App extends Component {
 
 App.propTypes = {
   selectedGame: PropTypes.object,
-  games: PropTypes.array,
+  myGames: PropTypes.object,
   isFetching: PropTypes.bool,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
-  const { selectedGame, games } = state
+  const { selectedGame, myGames } = state
   const {
     isFetching,
     lastUpdated
@@ -87,7 +87,7 @@ function mapStateToProps(state) {
 
   return {
     selectedGame,
-    games,
+    myGames,
     isFetching,
     lastUpdated
   }

@@ -22,14 +22,15 @@ export default class GameList extends Component {
   render() {
     console.warn('Render.GameList', this.props)
     return (
-    <List subheader="Games">
-      {this.props.games.map(game => {
-        return (<ListItem
-          primaryText={game.name}
-          rightIcon={<ActionInfo />}
-        />)}
-      )}
-    </List>
+      <List>
+        {this.props.games.map(game => {
+          return (<ListItem
+            key={game.id}
+            primaryText={game.name}
+            rightIcon={<ActionInfo />}
+          />)}
+        )}
+      </List>
    );
   }
 }

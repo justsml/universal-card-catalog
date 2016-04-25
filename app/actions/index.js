@@ -3,15 +3,15 @@ import fetch from 'isomorphic-fetch'
 export const REQUEST_GAMES     = 'REQUEST_GAMES'
 export const RECEIVE_GAMES     = 'RECEIVE_GAMES'
 export const REQUEST_ERROR     = 'REQUEST_ERROR'
+export const INVALID_GAMES     = 'INVALID_GAMES'
 export const SELECT_GAME       = 'SELECT_GAME'
-export const INVALIDATE_GAMES  = 'INVALIDATE_GAMES'
 
 export function selectGame(game) {
   return { 'type': SELECT_GAME, game }
 }
 
 export function invalidateGames(game) {
-  return { 'type': INVALIDATE_GAMES, game }
+  return { 'type': INVALID_GAMES, game }
 }
 
 function requestGames() {

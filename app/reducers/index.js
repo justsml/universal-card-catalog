@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import {
-  SELECT_GAME, INVALIDATE_GAMES,
+  SELECT_GAME, INVALID_GAMES,
   REQUEST_GAMES, RECEIVE_GAMES
 } from '../actions'
 
@@ -21,7 +21,7 @@ function setGames(state = {
 }, action) {
   console.warn('setGames', state, action)
   switch (action.type) {
-    case INVALIDATE_GAMES:
+    case INVALID_GAMES:
       return Object.assign({}, state, {
         didInvalidate: true
       })
@@ -45,7 +45,7 @@ function setGames(state = {
 function gamesByUser(state = { }, action) {
   console.warn('gamesByUser', state, action)
   switch (action.type) {
-    case INVALIDATE_GAMES:
+    case INVALID_GAMES:
     case RECEIVE_GAMES:
     case REQUEST_GAMES:
       return Object.assign({}, state, setGames(state, action))
@@ -56,7 +56,7 @@ function gamesByUser(state = { }, action) {
 
 const rootReducer = combineReducers({
   myGames: gamesByUser,
-  selected: selectedGame
+  selectedGame: selectedGame
 })
 
 export default rootReducer
