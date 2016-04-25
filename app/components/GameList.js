@@ -20,6 +20,7 @@ export default class GameList extends Component {
   }
 
   render() {
+    console.warn('Render.GameList', this.props)
     return (
     <List subheader="Games">
       {this.props.games.map(game => {

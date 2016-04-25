@@ -5,6 +5,7 @@ import {
 } from '../actions'
 
 function selectedGame(state = {}, action) {
+  console.warn('selectedGame', state, action)
   switch (action.type) {
     case SELECT_GAME:
       return action.game
@@ -16,8 +17,9 @@ function selectedGame(state = {}, action) {
 function setGames(state = {
   isFetching: false,
   didInvalidate: false,
-  items: []
+  games: []
 }, action) {
+  console.warn('setGames', state, action)
   switch (action.type) {
     case INVALIDATE_GAMES:
       return Object.assign({}, state, {
@@ -41,6 +43,7 @@ function setGames(state = {
 }
 
 function gamesByUser(state = { }, action) {
+  console.warn('gamesByUser', state, action)
   switch (action.type) {
     case INVALIDATE_GAMES:
     case RECEIVE_GAMES:
@@ -52,8 +55,8 @@ function gamesByUser(state = { }, action) {
 }
 
 const rootReducer = combineReducers({
-  gamesByUser,
-  selectedGame
+  myGames: gamesByUser,
+  selected: selectedGame
 })
 
 export default rootReducer

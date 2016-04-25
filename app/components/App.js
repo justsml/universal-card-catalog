@@ -36,11 +36,12 @@ class App extends Component {
   }
 
   render() {
-    const { selectedGame, games, isFetching, lastUpdated } = this.props
+    const { selectedGame, games, isFetching, lastUpdated } = (this.props && this.props.myGames || {})
     const isEmpty = !games || games.length === 0
+    console.warn('props', this.props)
     return (
       <div>
-        <h1>Almost working...?</h1>
+        <h1>Game Card Widget Thing?</h1>
         <p>
           {lastUpdated &&
             <span>
@@ -67,9 +68,9 @@ class App extends Component {
 }
 
 App.propTypes = {
-  selectedGame: PropTypes.string.isRequired,
-  games: PropTypes.array.isRequired,
-  isFetching: PropTypes.bool.isRequired,
+  selectedGame: PropTypes.object,
+  games: PropTypes.array,
+  isFetching: PropTypes.bool,
   lastUpdated: PropTypes.number,
   dispatch: PropTypes.func.isRequired
 }
@@ -79,8 +80,8 @@ function mapStateToProps(state) {
   const {
     isFetching,
     lastUpdated
-  } = games || {
-    isFetching: true,
+  } = state || {
+    isFetching: false,
     lastUpdated: -1
   }
 

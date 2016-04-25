@@ -19,6 +19,7 @@ function requestGames() {
 }
 
 function receiveGames(json) {
+  console.warn('receiveGames', json)
   return {
     'type': RECEIVE_GAMES,
     'games': json,
@@ -45,7 +46,8 @@ function fetchGames() {
 }
 
 function shouldFetchGames(state) {
-  const games = state.games
+  console.warn('shouldFetchGames', state)
+  const games = state.gamesByUser
   if (state.isFetching) {
     return false
   }
