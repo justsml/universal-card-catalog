@@ -32,9 +32,7 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'index'
-  }
+  '/': { view: 'index' },
 
   /***************************************************************************
   *                                                                          *
@@ -45,5 +43,9 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
+  'GET /user/:id': 'UserController.findOne',
+  'DELETE /delete-user/:id': 'UserController.destroy',
+  'POST /user': 'UserController.create',
+  'PUT /user/:id': 'UserController.update',
 
 };
